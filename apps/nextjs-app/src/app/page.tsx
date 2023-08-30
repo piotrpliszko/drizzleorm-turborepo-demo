@@ -1,9 +1,17 @@
 import Image from 'next/image';
+import { db, users } from 'database';
 
-export default function Home() {
+async function getData() {
+  const usersData = await db.select().from(users);
+  return { users: usersData };
+}
+
+export default async function Home() {
+  const { users } = await getData();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="relative flex place-items-center before:absolute ">
+    <main className="flex min-h-screen flex-col items-center p-24">
+      <div className="relative flex place-items-center before:absolute mb-20">
         <Image
           className="relative invert"
           src="/next.svg"
@@ -14,7 +22,16 @@ export default function Home() {
         />
       </div>
 
-      <div>Next.js app</div>
+      <div>
+        <div>Users:</div>
+        <div>
+          {users.map((user) => (
+            <div key={user.id}>
+              {user.id} - {user.name}
+            </div>
+          ))}
+        </div>
+      </div>
     </main>
   );
 }
