@@ -3,15 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "main": "dist/index.js",
-  "type": "module",
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
     "db:check": "drizzle-kit check:pg",
-    "db:generate": "drizzle-kit generate:pg"
+    "db:generate": "drizzle-kit generate:pg",
+    "db:migrate": "ts-node ./migrate.ts"
   },
   "devDependencies": {
     "drizzle-kit": "^0.19.13",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
