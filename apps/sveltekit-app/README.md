@@ -1,1 +1,1 @@
-# `sveltekit-app`
+# SvelteKit demo app
