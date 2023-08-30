@@ -10,6 +10,12 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "db:check": {
+      "cache": false
+    },
+    "db:generate": {
+      "cache": false
     }
   }
 }

@@ -2,10 +2,21 @@
   "name": "database",
   "version": "0.0.0",
   "private": true,
+  "main": "dist/index.js",
+  "type": "module",
   "scripts": {
-    "dev": "echo 'Add dev script here'",
-    "build": "echo 'Add build script here'",
-    "test": "echo 'Add test script here'",
-    "lint": "echo 'Add lint script here'"
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "db:check": "drizzle-kit check:pg",
+    "db:generate": "drizzle-kit generate:pg"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.19.13",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.28.5",
+    "postgres": "^3.3.5"
   }
 }
