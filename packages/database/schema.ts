@@ -1,4 +1,11 @@
-import { pgTable, integer, serial, text, timestamp } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  integer,
+  serial,
+  text,
+  timestamp,
+  boolean,
+} from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
 export const users = pgTable('users', {
@@ -23,6 +30,7 @@ export const posts = pgTable('posts', {
   userId: integer('user_id')
     .notNull()
     .references(() => users.id),
+  draft: boolean('draft').notNull().default(false),
 });
 
 export const postsRelations = relations(posts, ({ one }) => ({
