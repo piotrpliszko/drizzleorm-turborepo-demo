@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { db, users } from 'database';
+import { db, users, User } from 'database';
 
-async function getData() {
+async function getData(): Promise<{ users: User[] }> {
   const usersData = await db.select().from(users);
   return { users: usersData };
 }
@@ -24,13 +24,13 @@ export default async function Home() {
 
       <div>
         <div>Users:</div>
-        <div>
+        <ul>
           {users.map((user) => (
-            <div key={user.id}>
+            <li key={user.id}>
               {user.id} - {user.name}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </main>
   );
