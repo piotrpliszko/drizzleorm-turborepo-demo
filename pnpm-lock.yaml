@@ -67,6 +67,13 @@ importers:
         version: 4.9.5
 
   apps/sveltekit-app:
+    dependencies:
+      database:
+        specifier: workspace:*
+        version: link:../../packages/database
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^2.0.0
