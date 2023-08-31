@@ -1,9 +1,26 @@
-import { db, posts, type Post } from 'database';
+import { db, posts, users, eq } from 'database';
 
-export async function load({ params }) {
-	const postsData: Post[] = await db.select().from(posts);
+export interface PostWithUserData {
+	id: number;
+	title: string;
+	content: string;
+	userId: number;
+	userName: string;
+}
+
+export async function load({ params }): Promise<{ posts: PostWithUserData[] }> {
+	const data = await db
+		.select({
+			id: posts.id,
+			title: posts.title,
+			content: posts.content,
+			userId: posts.userId,
+			userName: users.name
+		})
+		.from(users)
+		.innerJoin(posts, eq(users.id, posts.userId));
 
 	return {
-		posts: postsData
+		posts: data
 	};
 }

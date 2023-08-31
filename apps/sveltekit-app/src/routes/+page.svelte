@@ -1,8 +1,8 @@
 <script lang="ts">
 	import logo from '$lib/assets/sveltekit.svg';
-	import type { Post } from 'database';
+	import type { PostWithUserData } from './+page.server';
 
-	export let data: { posts: Post[] };
+	export let data: { posts: PostWithUserData[] };
 </script>
 
 <main class="flex min-h-screen flex-col items-center p-24">
@@ -15,7 +15,7 @@
 			<div class="mb-6 max-w-3xl">
 				<div class="mb-2">
 					<div class="text-3xl">{post.title}</div>
-					<div>{post.userId}</div>
+					<div>{post.userName}</div>
 				</div>
 				<div>{post.content}</div>
 			</div>
